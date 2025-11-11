@@ -2,1128 +2,338 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ポートフォリオ | DevOps / Webエンジニア</title>
+  <title>Portfolio | DevOps / Webエンジニア</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="DevOps / Webエンジニアのポートフォリオサイトです。Webアプリ・モバイルアプリ・インフラ構築の実績を紹介しています。" />
+  <meta name="description" content="インフラとWebアプリ開発を両方カバーするDevOpsエンジニアのポートフォリオサイトです。" />
   <style>
     :root {
-      --bg: #050816;
-      --bg-alt: #0b1020;
-      --card: #0f172a;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.15);
-      --border: #1f2937;
-      --radius-lg: 18px;
-      --radius-xl: 999px;
-      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.4);
-      --transition-fast: 180ms ease-out;
-      --transition-normal: 240ms ease-out;
-      --max-width: 1040px;
+      --text-main: #ffffff;
+      --text-sub: rgba(255, 255, 255, 0.8);
+      --btn-grad-from: #7fd6ff;
+      --btn-grad-to: #ffb3b3;
+      --btn-text: #1f2933;
+      --blur-bg: rgba(255, 255, 255, 0.75);
+      --border-soft: rgba(148, 163, 184, 0.4);
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 60%, #020617 100%), var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color: var(--text-main);
+      background-color: #f5f5f5;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.12), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.12), transparent 55%),
-        radial-gradient(circle at 50% 100%, rgba(45, 212, 191, 0.08), transparent 60%);
-    }
-
-    .container {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    /* Header / Nav */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.90), rgba(15, 23, 42, 0.75), transparent);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
-
-    .logo-mark {
-      width: 26px;
-      height: 26px;
-      border-radius: 9px;
-      background: radial-gradient(circle at 30% 0, #e0f2fe, #38bdf8 45%, #0f172a 100%);
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.7), 0 0 0 6px rgba(56, 189, 248, 0.15);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .nav-links a:hover {
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--text);
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      font-size: 13px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(56, 189, 248, 0.6);
-      color: var(--accent);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.2), transparent 70%);
-      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.8);
-      display: none;
-    }
-
-    @media (min-width: 768px) {
-      .nav-cta {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-      }
-    }
-
-    /* Hero */
     .hero {
-      padding: 72px 0 40px;
+      position: relative;
+      min-height: 100vh;
+      color: var(--text-main);
+      overflow: hidden;
+      background-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+        url("hero.jpg"); /* ← 自分の背景画像パスに変更してください */
+      background-size: cover;
+      background-position: center center;
+    }
+
+    /* subtle overlay for readability */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.18), transparent 55%);
+      pointer-events: none;
     }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 40px;
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 5vw 40px;
+    }
+
+    /* header / nav */
+
+    .site-header {
+      position: absolute;
+      inset-inline: 0;
+      top: 18px;
+      padding-inline: 5vw;
+      display: flex;
       align-items: center;
+      z-index: 2;
+      font-size: 14px;
+      color: var(--text-sub);
     }
 
-    @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .site-logo {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #ffffff;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      padding: 3px 9px 3px 4px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      margin-bottom: 14px;
+    .site-nav {
+      display: flex;
+      gap: 32px;
+      margin-inline: auto;
     }
 
-    .eyebrow-pill {
-      width: 18px;
-      height: 18px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 0, #e0f2fe, #38bdf8 45%, #0f172a 100%);
+    .site-nav a {
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      padding-block: 4px;
+    }
+
+    .site-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 1px;
+      background-color: #ffffff;
+      transition: width 180ms ease-out;
+    }
+
+    .site-nav a:hover::after {
+      width: 100%;
+    }
+
+    .lang-switch {
+      display: flex;
+      gap: 12px;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      padding: 0;
+      opacity: 0.8;
+    }
+
+    .lang-switch button.is-active {
+      opacity: 1;
+      font-weight: 500;
+    }
+
+    /* hero bottom area */
+
+    .hero-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      margin-top: auto;
+      padding-top: 40px;
+      animation: fade-up 0.7s ease-out both;
+    }
+
+    .hero-copy {
+      max-width: 520px;
+    }
+
+    .hero-kicker {
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--text-sub);
     }
 
     .hero-title {
-      font-size: clamp(28px, 4vw, 38px);
-      line-height: 1.25;
-      margin: 0 0 12px;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-title span {
-      background: linear-gradient(120deg, #38bdf8, #a855f7, #22c55e);
-      -webkit-background-clip: text;
-      color: transparent;
+      font-size: clamp(26px, 3.4vw, 34px);
+      line-height: 1.4;
+      margin-bottom: 12px;
     }
 
     .hero-sub {
       font-size: 14px;
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 22px;
+      max-width: 34em;
+      color: var(--text-sub);
     }
 
     .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .hero-chip {
-      font-size: 11px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .btn-primary,
-    .btn-ghost {
-      padding: 9px 18px;
-      border-radius: var(--radius-xl);
+      margin-top: 18px;
       font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
-      text-decoration: none;
+      color: var(--text-sub);
     }
 
-    .btn-primary {
-      background: radial-gradient(circle at 0 0, #38bdf8, #2563eb 65%, #0f172a 100%);
-      color: white;
-      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.75);
+    .hero-meta span + span {
+      margin-left: 12px;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.85);
-    }
-
-    .btn-ghost {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--muted);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-    }
-
-    .btn-ghost:hover {
-      transform: translateY(-1px);
-      border-color: rgba(148, 163, 184, 0.8);
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .hero-footnote {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero-visual {
-      position: relative;
-      min-height: 260px;
-    }
+    /* right bottom card */
 
     .hero-card {
-      position: relative;
+      max-width: 320px;
       padding: 18px 18px 16px;
-      border-radius: 22px;
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.23), rgba(15, 23, 42, 0.95));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft);
-      overflow: hidden;
+      border-radius: 18px;
+      background: var(--blur-bg);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 22px 40px rgba(15, 23, 42, 0.25);
+      color: #111827;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      animation: fade-up 0.7s ease-out 0.12s both;
     }
 
-    .hero-card-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 16px;
-    }
-
-    .hero-card-main-title {
+    .hero-card p {
       font-size: 13px;
-      margin-bottom: 2px;
-    }
-
-    .hero-card-main-sub {
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .hero-tech-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      line-height: 1.7;
       margin-bottom: 14px;
+      color: #4b5563;
     }
 
-    .hero-tech-tag {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.45);
+    .hero-card small {
+      display: block;
+      font-size: 11px;
+      margin-bottom: 10px;
+      color: #6b7280;
     }
 
-    .hero-status {
-      font-size: 10px;
+    .hero-card button {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 3px 8px;
+      justify-content: center;
+      padding: 9px 18px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(45, 212, 191, 0.8);
-      color: #a7f3d0;
-    }
-
-    .status-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
-    }
-
-    .hero-card-aside {
-      font-size: 10px;
-      color: var(--muted);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .hero-mini-metric {
-      padding: 6px 8px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-    }
-
-    .hero-mini-label {
-      font-size: 10px;
-      color: var(--muted);
-    }
-
-    .hero-mini-value {
+      background-image: linear-gradient(135deg, var(--btn-grad-from), var(--btn-grad-to));
+      border: none;
+      color: var(--btn-text);
       font-size: 13px;
-      font-weight: 600;
-    }
-
-    .hero-orbit {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.55;
-    }
-
-    .hero-orbit-circle {
-      position: absolute;
-      border-radius: 999px;
-      border: 1px dashed rgba(148, 163, 184, 0.3);
-      animation: orbit-spin 22s linear infinite;
-    }
-
-    .hero-orbit-circle:nth-child(1) {
-      inset: 8px 12px;
-    }
-
-    .hero-orbit-circle:nth-child(2) {
-      inset: 20px 38px;
-      animation-duration: 30s;
-      border-style: solid;
-    }
-
-    .hero-orbit-dot {
-      position: absolute;
-      top: -4px;
-      left: 40%;
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #38bdf8;
-      box-shadow: 0 0 14px rgba(56, 189, 248, 0.8);
-    }
-
-    .hero-badge {
-      position: absolute;
-      right: 6px;
-      bottom: 6px;
-      font-size: 9px;
-      padding: 3px 7px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    /* Sections */
-    section {
-      padding: 40px 0 12px;
-    }
-
-    .section-header {
-      margin-bottom: 18px;
-    }
-
-    .section-eyebrow {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      margin-bottom: 4px;
-    }
-
-    .section-title {
-      font-size: 18px;
-      margin: 0 0 4px;
-    }
-
-    .section-lead {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 540px;
-    }
-
-    /* About */
-    .about-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 22px;
-    }
-
-    @media (max-width: 900px) {
-      .about-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .about-card {
-      padding: 18px 18px 16px;
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-    }
-
-    .about-card h3 {
-      font-size: 14px;
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .about-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .about-list li + li {
-      margin-top: 4px;
-    }
-
-    .stack-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      font-size: 11px;
-      margin-top: 8px;
-    }
-
-    .stack-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-    }
-
-    /* Services */
-    .cards-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-    }
-
-    .card {
-      position: relative;
-      padding: 16px 16px 14px;
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(148, 163, 184, 0.25);
-      overflow: hidden;
-      transition: transform var(--transition-normal), box-shadow var(--transition-normal), border-color var(--transition-normal), background var(--transition-normal);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 60%);
-      opacity: 0;
-      transition: opacity var(--transition-normal);
-      pointer-events: none;
-    }
-
-    .card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 18px 30px rgba(15, 23, 42, 0.85);
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-title {
-      font-size: 14px;
-      margin-bottom: 4px;
-    }
-
-    .card-body {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .card-meta {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    /* Works */
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
-    }
-
-    .work-tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 11px;
-      margin-top: 6px;
-    }
-
-    .work-tag {
-      padding: 3px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      color: var(--muted);
-    }
-
-    .card-link {
-      font-size: 12px;
-      color: var(--accent);
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-top: 6px;
-    }
-
-    /* Output / SNS */
-    .output-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 900px) {
-      .output-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .sns-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .sns-list li + li {
-      margin-top: 6px;
-    }
-
-    .sns-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.96);
-      font-size: 12px;
-    }
-
-    .sns-badge {
-      font-size: 10px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--muted);
-    }
-
-    /* Contact */
-    .contact-card {
-      padding: 18px 18px 16px;
-      border-radius: var(--radius-lg);
-      background: rgba(15, 23, 42, 0.98);
-      border: 1px solid rgba(148, 163, 184, 0.3);
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 20px;
-      align-items: center;
-    }
-
-    @media (max-width: 900px) {
-      .contact-card {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .contact-meta {
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .contact-email {
-      font-size: 14px;
-      margin-top: 8px;
       font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(148, 163, 184, 0.5);
+      transition: transform 160ms ease-out, box-shadow 160ms ease-out, filter 160ms ease-out;
+      min-width: 120px;
     }
 
-    .contact-meta-list {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 8px;
+    .hero-card button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 32px rgba(148, 163, 184, 0.7);
+      filter: brightness(1.03);
     }
 
-    .contact-meta-list li + li {
-      margin-top: 2px;
-    }
-
-    .contact-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-
-    @media (max-width: 900px) {
-      .contact-actions {
-        justify-content: flex-start;
-      }
-    }
-
-    /* Footer */
-    footer {
-      padding: 22px 0 30px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      border-top: 1px solid rgba(148, 163, 184, 0.2);
-      padding-top: 14px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    /* Simple "scroll in" animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 480ms ease-out, transform 480ms ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
+    .hero-card button:active {
       transform: translateY(0);
+      box-shadow: 0 8px 16px rgba(148, 163, 184, 0.6);
     }
 
-    @keyframes orbit-spin {
+    /* animation */
+
+    @keyframes fade-up {
       from {
-        transform: rotate(0deg);
+        opacity: 0;
+        transform: translateY(16px);
       }
       to {
-        transform: rotate(360deg);
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* responsive */
+
+    @media (max-width: 900px) {
+      .site-header {
+        font-size: 13px;
+      }
+
+      .site-nav {
+        display: none; /* スマホ版ではとりあえず非表示。必要なら後でハンバーガーに。 */
+      }
+
+      .hero-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-card {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-inner {
+        padding-inline: 16px;
+        padding-bottom: 28px;
+      }
+
+      .site-header {
+        padding-inline: 16px;
+      }
+
+      .hero-title {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="container nav">
-        <div class="logo">
-          <div class="logo-mark"></div>
-          <div>Portfolio</div>
-        </div>
-        <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#works">Works</a>
-          <a href="#output">Output</a>
-          <a href="#contact" class="nav-cta">Contact</a>
-        </nav>
+  <div class="hero">
+    <!-- ヘッダー -->
+    <header class="site-header">
+      <div class="site-logo">Portfolio</div>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#">プロフィール</a>
+        <a href="#">実績</a>
+        <a href="#">サービス</a>
+        <a href="#">お問い合わせ</a>
+      </nav>
+
+      <div class="lang-switch" aria-label="Language switch">
+        <button type="button" class="is-active">日本語</button>
+        <button type="button">English</button>
       </div>
     </header>
 
-    <main>
-      <!-- Hero -->
-      <section class="hero">
-        <div class="container hero-inner">
-          <div>
-            <div class="eyebrow">
-              <div class="eyebrow-pill"></div>
-              <span>副業案件受付中</span>
-            </div>
-            <h1 class="hero-title">
-              インフラもアプリも任せられる<br />
-              <span>DevOps / Webエンジニア</span> です。
-            </h1>
-            <p class="hero-sub">
-              自社開発企業での経験を活かして、AWS・コンテナ・CI/CD を軸に、
-              小〜中規模プロダクトの開発と運用を一気通貫で支援します。
-              要件がふわっとしていても構いません。まずは相談ベースでお話ししましょう。
-            </p>
-
-            <div class="hero-meta">
-              <span class="hero-chip">経験：インフラ 5年 / Web 3年（例）</span>
-              <span class="hero-chip">得意領域：AWS / Docker / GitLab CI / Python</span>
-            </div>
-
-            <div class="hero-actions">
-              <a href="#works" class="btn-primary">
-                実績を見る
-                <span>→</span>
-              </a>
-              <a href="#contact" class="btn-ghost">
-                仕事の相談をする
-              </a>
-            </div>
-            <div class="hero-footnote">
-              平日夜・土日対応可 / 長期の継続案件歓迎
-            </div>
+    <!-- メインコンテンツ -->
+    <div class="hero-inner">
+      <main class="hero-bottom">
+        <section class="hero-copy">
+          <p class="hero-kicker">DevOps / Web Engineer</p>
+          <h1 class="hero-title">
+            インフラもアプリも一気通貫で支える、<br />
+            フルスタック寄りエンジニアです。
+          </h1>
+          <p class="hero-sub">
+            自社開発企業で培った AWS・コンテナ・CI/CD の知見を活かして、
+            小規模〜中規模プロダクトの開発と運用を丁寧にサポートします。
+            副業として、長く伴走できるパートナーを探しています。
+          </p>
+          <div class="hero-meta">
+            <span>インフラ経験：5年（例）</span>
+            <span>Web開発経験：3年（例）</span>
           </div>
+        </section>
 
-          <div class="hero-visual">
-            <div class="hero-card">
-              <div class="hero-card-grid">
-                <div>
-                  <div class="hero-card-main-title">現在のフォーカス</div>
-                  <div class="hero-card-main-sub">SaaS / 自社プロダクトの開発・運用を支えるバックエンドとインフラ</div>
-                  <div class="hero-tech-tags">
-                    <span class="hero-tech-tag">AWS</span>
-                    <span class="hero-tech-tag">Docker / k8s</span>
-                    <span class="hero-tech-tag">GitLab CI</span>
-                    <span class="hero-tech-tag">Python</span>
-                    <span class="hero-tech-tag">TypeScript</span>
-                  </div>
-                  <span class="hero-status">
-                    <span class="status-dot"></span>
-                    副業：月〇〜〇時間程度 受付中
-                  </span>
-                </div>
-                <div class="hero-card-aside">
-                  <div class="hero-mini-metric">
-                    <div class="hero-mini-label">これまでの担当フェーズ</div>
-                    <div class="hero-mini-value">要件定義〜運用まで一気通貫</div>
-                  </div>
-                  <div class="hero-mini-metric">
-                    <div class="hero-mini-label">副業でやりたいこと</div>
-                    <div class="hero-mini-value">小さく始めて継続的に改善する開発</div>
-                  </div>
-                  <div class="hero-mini-metric">
-                    <div class="hero-mini-label">コミュニケーション</div>
-                    <div class="hero-mini-value">Slack / Chatwork / Zoom など柔軟に対応</div>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-orbit">
-                <div class="hero-orbit-circle">
-                  <div class="hero-orbit-dot"></div>
-                </div>
-                <div class="hero-orbit-circle">
-                  <div class="hero-orbit-dot"></div>
-                </div>
-              </div>
-              <div class="hero-badge">
-                実務視点で「運用しやすさ」も考えた実装を心がけています。
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- About -->
-      <section id="about">
-        <div class="container reveal">
-          <div class="section-header">
-            <div class="section-eyebrow">About</div>
-            <h2 class="section-title">自己紹介</h2>
-            <p class="section-lead">
-              本業での経験をベースに、現場感のある設計・実装・運用を副業でも提供します。
-              「とりあえず動くもの」だけでなく、長く使える仕組みづくりが得意です。
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-card">
-              <h3>プロフィール</h3>
-              <ul class="about-list">
-                <li>・都内自社開発企業で働く DevOps / インフラエンジニア。</li>
-                <li>・オンプレ・クラウド環境でのプロダクト運用を担当。</li>
-                <li>・コンテナ化、CI/CD、監視・ログ基盤などの整備がメイン領域。</li>
-                <li>・副業では、小規模〜中規模サービスの開発・改善に興味があります。</li>
-              </ul>
-            </div>
-
-            <div class="about-card">
-              <h3>スキルスタック</h3>
-              <div class="stack-grid">
-                <span class="stack-pill">言語：Python / TypeScript / Shell</span>
-                <span class="stack-pill">フレームワーク：FastAPI / Django / Next.js</span>
-                <span class="stack-pill">インフラ：AWS / Linux / Docker / k8s</span>
-                <span class="stack-pill">CI/CD：GitLab CI / GitHub Actions</span>
-                <span class="stack-pill">その他：監視 / ログ / 自動化スクリプト</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Services -->
-      <section id="services">
-        <div class="container reveal">
-          <div class="section-header">
-            <div class="section-eyebrow">Services</div>
-            <h2 class="section-title">お手伝いできること</h2>
-            <p class="section-lead">
-              スポットでの相談から、継続的な開発・運用まで対応可能です。
-              まずは小さく始めて、良ければ段階的に広げていく形を想定しています。
-            </p>
-          </div>
-
-          <div class="cards-row">
-            <article class="card">
-              <h3 class="card-title">Webアプリの新規開発</h3>
-              <p class="card-body">
-                要件整理〜設計・実装・デプロイまで、一通り対応します。
-                認証付きの管理画面や、社内向けツールなどを想定しています。
-              </p>
-              <div class="card-meta">
-                Tech例：FastAPI / Django / Next.js / PostgreSQL / Docker
-              </div>
-            </article>
-
-            <article class="card">
-              <h3 class="card-title">既存システムの改善・リファクタリング</h3>
-              <p class="card-body">
-                既存のコードを読み解きつつ、バグ修正や機能追加、パフォーマンス改善などを行います。
-                ちょっと触る人がいなくて困っている、といったケースも歓迎です。
-              </p>
-              <div class="card-meta">
-                小さな改修から長期の保守フェーズまで対応可能
-              </div>
-            </article>
-
-            <article class="card">
-              <h3 class="card-title">AWSインフラ設計・構築</h3>
-              <p class="card-body">
-                小規模〜中規模サービス向けの VPC / EC2 / RDS / ALB などの構成検討と構築を行います。
-                セキュリティや運用も含めて一緒に考えます。
-              </p>
-              <div class="card-meta">
-                IaC（CloudFormation / Terraform）にも対応可能（要相談）
-              </div>
-            </article>
-
-            <article class="card">
-              <h3 class="card-title">CI/CD・自動化の整備</h3>
-              <p class="card-body">
-                GitLab CI / GitHub Actions を使ったビルド・テスト・デプロイの自動化パイプラインを構築します。
-                手作業の運用フローを減らし、ミスの起きにくい体制づくりを支援します。
-              </p>
-              <div class="card-meta">
-                既存パイプラインの改善・トラブルシュートのみの相談もOKです。
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Works -->
-      <section id="works">
-        <div class="container reveal">
-          <div class="section-header">
-            <div class="section-eyebrow">Works</div>
-            <h2 class="section-title">ピックアップ実績</h2>
-            <p class="section-lead">
-              詳細は「実績ページ」でまとめる予定ですが、まずはイメージしやすい代表的な開発例を並べています。
-            </p>
-          </div>
-
-          <div class="works-grid">
-            <article class="card">
-              <h3 class="card-title">録画管理システム向け 管理コンソール（仮）</h3>
-              <p class="card-body">
-                録画サーバーの状態確認や設定変更を行う社内向けWeb管理画面。
-                バックエンドAPI設計・実装、フロント実装、一部インフラ構築を担当。
-              </p>
-              <div class="work-tag-row">
-                <span class="work-tag">Webアプリ</span>
-                <span class="work-tag">BtoB</span>
-                <span class="work-tag">社内向けツール</span>
-              </div>
-              <div class="card-meta">
-                Tech例：FastAPI / Vue.js / Docker / AWS
-              </div>
-              <a href="#" class="card-link">
-                詳細ページを見る（準備中）
-              </a>
-            </article>
-
-            <article class="card">
-              <h3 class="card-title">設定配布・自動化CLIツール（仮）</h3>
-              <p class="card-body">
-                サーバーの設定配布やバックアップなど、手作業になりがちな運用フローをCLIツールとして自動化。
-                本番運用の現場で実際に利用されているツールです。
-              </p>
-              <div class="work-tag-row">
-                <span class="work-tag">CLIツール</span>
-                <span class="work-tag">自動化</span>
-                <span class="work-tag">運用改善</span>
-              </div>
-              <div class="card-meta">
-                Tech例：Python / Shell / GitLab CI
-              </div>
-              <a href="#" class="card-link">
-                詳細ページを見る（準備中）
-              </a>
-            </article>
-
-            <article class="card">
-              <h3 class="card-title">ポートフォリオサイト</h3>
-              <p class="card-body">
-                本サイトそのものも、技術スタックやデザインの一例として位置付けています。
-                ローカル〜GitHub Pagesへのデプロイまでのフローも公開予定です。
-              </p>
-              <div class="work-tag-row">
-                <span class="work-tag">Webサイト</span>
-                <span class="work-tag">ポートフォリオ</span>
-                <span class="work-tag">静的ホスティング</span>
-              </div>
-              <div class="card-meta">
-                Tech例：HTML / CSS / （今後：Astro / Tailwindなどへの移行も検討）
-              </div>
-              <a href="#" class="card-link">
-                GitHubリポジトリを見る（準備中）
-              </a>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- Output / SNS -->
-      <section id="output">
-        <div class="container reveal">
-          <div class="section-header">
-            <div class="section-eyebrow">Output</div>
-            <h2 class="section-title">発信している場所</h2>
-            <p class="section-lead">
-              日々の学びや、働き方・キャリアの話などを外部サービスでも発信しています。
-              「この人どんな考え方をするんだろう？」というところの参考にしてもらえれば幸いです。
-            </p>
-          </div>
-
-          <div class="output-row">
-            <div class="about-card">
-              <h3>ピックアップコンテンツ（予定）</h3>
-              <ul class="about-list">
-                <li>・自社開発企業で働くエンジニアのリアル（note）</li>
-                <li>・インフラエンジニアからDevOpsエンジニアへのキャリアチェンジ</li>
-                <li>・AWS / コンテナ / CI/CD に関する技術メモ</li>
-              </ul>
-            </div>
-
-            <div class="about-card">
-              <h3>各種リンク</h3>
-              <ul class="sns-list">
-                <li>
-                  <a href="#" class="sns-link">
-                    <span>note</span>
-                    <span class="sns-badge">記事一覧へ</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="sns-link">
-                    <span>X（旧Twitter）</span>
-                    <span class="sns-badge">日々のメモ</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="sns-link">
-                    <span>YouTube</span>
-                    <span class="sns-badge">技術解説（準備中）</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="sns-link">
-                    <span>GitHub</span>
-                    <span class="sns-badge">ソースコード・サンプル集</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact">
-        <div class="container reveal">
-          <div class="section-header">
-            <div class="section-eyebrow">Contact</div>
-            <h2 class="section-title">お問い合わせ</h2>
-            <p class="section-lead">
-              副業での開発・インフラ・自動化のご相談を受け付けています。
-              ざっくりとしたアイデア段階でも構いません。まずはお気軽にご連絡ください。
-            </p>
-          </div>
-
-          <div class="contact-card">
-            <div>
-              <div class="contact-meta">
-                ▼ こんなご相談を想定しています
-              </div>
-              <ul class="contact-meta-list">
-                <li>・社内向けの小さなWebツールを作りたい</li>
-                <li>・既存システムの保守担当がいなくて困っている</li>
-                <li>・AWSやCI/CD周りを整理したいが、どこから手を付けるべきか知りたい</li>
-              </ul>
-              <div class="contact-email">
-                メール：<a href="mailto:example@example.com">example@example.com</a>
-                <!-- TODO: 実際のメールアドレスに置き換え -->
-              </div>
-              <ul class="contact-meta-list">
-                <li>・対応時間：平日夜間 / 土日</li>
-                <li>・返信目安：1〜2営業日以内</li>
-              </ul>
-            </div>
-            <div class="contact-actions">
-              <a href="mailto:example@example.com?subject=%5B%E5%89%AF%E6%A5%AD%E3%81%AE%E3%81%94%E7%9B%B8%E8%AB%87%5D&body=%E4%BB%A5%E4%B8%8B%E3%82%92%E5%A1%AB%E3%81%84%E3%81%A6%E3%81%94%E9%80%81%E4%BF%A1%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%0A%0A%E3%83%BB%E3%81%94%E4%BC%9A%E7%A4%BE%E5%90%8D%E3%83%BB%E3%81%8A%E5%90%8D%E5%89%8D%3A%0A%E3%83%BB%E3%81%94%E7%94%B3%E8%AB%8B%E6%A6%82%E8%A6%81%3A%0A%E3%83%BB%E7%9B%AE%E6%A8%99%E6%9C%9F%E9%96%93%3A%0A%E3%83%BB%E4%BA%88%E7%AE%97%E6%84%9F%3A%0A%E3%83%BB%E3%81%9D%E3%81%AE%E4%BB%96%20%E7%89%B9%E7%95%B0%E4%BA%8B%E9%A0%85%3A%0A"
-                 class="btn-primary">
-                メールで問い合わせる
-              </a>
-              <a href="#hero" class="btn-ghost">
-                トップに戻る
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container footer-inner">
-        <div>© <span id="year"></span> Your Name. All rights reserved.</div>
-        <div class="footer-links">
-          <span>Built for side projects &amp; freelance.</span>
-        </div>
-      </div>
-    </footer>
+        <aside class="hero-card">
+          <small>副業のご相談について</small>
+          <p>
+            平日夜・土日を中心に、副業での開発・インフラ・自動化のご相談をお受けしています。
+            要件が固まっていない段階でもかまいません。まずはオンラインで15〜30分ほど、お話してみませんか。
+          </p>
+          <button type="button" onclick="window.location.href='mailto:example@example.com'">
+            お問い合わせはこちら
+          </button>
+        </aside>
+      </main>
+    </div>
   </div>
-
-  <script>
-    // 年を自動更新
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // シンプルなスムーススクロール
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener("click", function (e) {
-        const targetId = this.getAttribute("href").slice(1);
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        e.preventDefault();
-        window.scrollTo({
-          top: target.offsetTop - 70,
-          behavior: "smooth"
-        });
-      });
-    });
-
-    // スクロール時のふわっと表示
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
-  </script>
 </body>
 </html>
