@@ -33,20 +33,10 @@
       min-height: 100vh;
       color: var(--text-main);
       overflow: hidden;
-      background-image:
-        linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
-        url("hero.jpg"); /* ← 自分の背景画像パスに変更してください */
+      background-image: url("./hero.jpg");  /* index.html と同じ階層ならこれでOK */
       background-size: cover;
       background-position: center center;
-    }
-
-    /* subtle overlay for readability */
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 10% 10%, rgba(0, 0, 0, 0.18), transparent 55%);
-      pointer-events: none;
+      background-repeat: no-repeat;
     }
 
     .hero-inner {
