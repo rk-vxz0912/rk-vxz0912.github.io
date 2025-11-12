@@ -309,6 +309,54 @@
       margin-top: 6px;
     }
 
+    /* ===== Sticky CTA (floating card) ===== */
+    .cta-sticky {
+      position: fixed;               /* ← これで常に表示 */
+      right: max(16px, 5vw);
+      bottom: max(16px, calc(16px + env(safe-area-inset-bottom)));
+      z-index: 30;
+      max-width: 320px;              /* 既存 hero-card の幅と合わせる */
+    }
+
+        /* iOS のセーフエリア対応 (notchなど) */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .cta-sticky { bottom: calc(16px + env(safe-area-inset-bottom)); }
+    }
+    
+    /* スマホは横幅を広げて邪魔にならないように */
+    @media (max-width: 900px) {
+      .cta-sticky {
+        left: 16px;
+        right: 16px;
+        bottom: calc(12px + env(safe-area-inset-bottom));
+        max-width: none;
+      }
+      .page-main { 
+        padding-bottom: 120px; 
+      }
+    }
+    
+    /* 閉じるボタン */
+    .cta-close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: #6b7280;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    
+    .cta-close:hover { color: #374151; }
+    
+    /* 非表示状態（閉じたら適用） */
+    .cta-sticky.is-hidden { display: none; }
+
     @media (max-width: 900px) {
       .site-header {
         font-size: 13px;
@@ -391,7 +439,8 @@
           </div>
         </section>
 
-        <aside class="hero-card">
+        <aside class="hero-card cta-sticky" id="ctaSticky" role="complementary" aria-label="お問い合わせ">
+          <button class="cta-close" id="ctaClose" aria-label="閉じる">×</button>
           <small>仕事のご相談について</small>
           <p>
             平日夜・土日を中心に、副業での開発・インフラ・自動化のご相談をお受けしています。
@@ -480,8 +529,19 @@
     if (window.scrollY > 24) header.classList.add('is-scrolled');
     else header.classList.remove('is-scrolled');
   };
+  const cta = document.getElementById('ctaSticky');
+  const closeBtn = document.getElementById('ctaClose');
   toggleHeader(); // 初期表示時
   window.addEventListener('scroll', toggleHeader);
+  if (closeBtn && cta) {
+    closeBtn.addEventListener('click', () => {
+      cta.classList.add('is-hidden');
+      // 必要なら次の行で sessionStorage に保存して、再読み込み後も非表示にできます
+      // sessionStorage.setItem('hideCta', '1');
+    });
+    // 再読み込みでも隠したままにしたい場合は次を有効化
+    // if (sessionStorage.getItem('hideCta') === '1') cta.classList.add('is-hidden');
+  }
 </script>
 </body>
 </html>
