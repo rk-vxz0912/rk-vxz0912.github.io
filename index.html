@@ -318,9 +318,54 @@
       max-width: 320px;              /* 既存 hero-card の幅と合わせる */
     }
 
+    .cta-card{
+      position: fixed;                    /* ビューポート基準で固定 */
+      right: max(16px, 5vw);
+      bottom: max(16px, 24px);
+      z-index: 999;                       /* 何よりも手前に */
+      width: min(92vw, 340px);
+      padding: 16px 16px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(148,163,184,.35);
+      box-shadow: 0 18px 40px rgba(15,23,42,.26);
+      color: #111827;
+    }
+
+    .cta-heading{
+      display:block;
+      font-size: 12px;
+      color: #6b7280;
+      margin: 2px 0 8px;
+    }
+    
+    .cta-text{
+      font-size: 13px;
+      color: #4b5563;
+      line-height: 1.65;
+      margin: 0 0 12px;
+    }
+    
+    .cta-button{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 9px 18px;
+      width: 100%;
+      border: 0; border-radius: 999px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      color: #1f2933;
+      background-image: linear-gradient(135deg, #7fd6ff, #ffb3b3);
+      box-shadow: 0 12px 24px rgba(148,163,184,.5);
+      transition: transform .16s ease-out, box-shadow .16s ease-out, filter .16s ease-out;
+    }
+    .cta-button:hover{ transform: translateY(-1px); box-shadow: 0 16px 32px rgba(148,163,184,.7); }
+    .cta-button:active{ transform: translateY(0); box-shadow: 0 8px 16px rgba(148,163,184,.6); }
+
         /* iOS のセーフエリア対応 (notchなど) */
     @supports (padding: env(safe-area-inset-bottom)) {
       .cta-sticky { bottom: calc(16px + env(safe-area-inset-bottom)); }
+      .cta-card{ bottom: calc(16px + env(safe-area-inset-bottom)); }
     }
     
     /* スマホは横幅を広げて邪魔にならないように */
@@ -336,23 +381,20 @@
       }
     }
     
-    /* 閉じるボタン */
-    .cta-close {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      border: 0;
-      background: transparent;
-      color: #6b7280;
-      font-size: 18px;
-      line-height: 1;
+    /* × ボタンを小さく上寄せ */
+    .cta-close{
+      position:absolute; top:8px; right:8px;
+      width: 24px; height: 24px;
+      border: 0; border-radius: 999px;
+      background: rgba(255,255,255,.85);
+      color: #6b7280; font-size: 16px; line-height: 1;
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,.15);
     }
+    .cta-close:hover{ color:#374151; background:#ffffff; }
     
-    .cta-close:hover { color: #374151; }
+    /* 閉じた状態 */
+    .cta-card.is-hidden{ display:none; }
     
     /* 非表示状態（閉じたら適用） */
     .cta-sticky.is-hidden { display: none; }
@@ -378,6 +420,10 @@
       .profile-grid {
         grid-template-columns: minmax(0, 1fr);
       }
+      .cta-card{
+        left: 16px; right: 16px; bottom: 16px; width: auto;
+      }
+      .page-main{ padding-bottom: 120px; } /* 必要なら。カードと重なり回避 */
     }
 
     @media (max-width: 600px) {
@@ -438,21 +484,6 @@
             <span>Web開発経験：3年（例）</span>
           </div>
         </section>
-
-        <aside class="hero-card cta-sticky" id="ctaSticky" role="complementary" aria-label="お問い合わせ">
-          <button class="cta-close" id="ctaClose" aria-label="閉じる">×</button>
-          <small>仕事のご相談について</small>
-          <p>
-            平日夜・土日を中心に、副業での開発・インフラ・自動化のご相談をお受けしています。
-            要件が固まっていない段階でもかまいません。まずはオンラインで15〜30分ほど、お話してみませんか。
-          </p>
-          <button type="button" onclick="window.location.href='mailto:example@example.com'">
-            お問い合わせはこちら
-          </button>
-        </aside>
-      </div>
-    </div>
-  </div>
 
   <!-- 下にスクロールしたときのコンテンツ -->
   <main class="page-main">
@@ -523,6 +554,17 @@
       </div>
     </section>
   </main>
+<aside class="cta-card" id="ctaCard" role="complementary" aria-label="お問い合わせ">
+  <button type="button" class="cta-close" id="ctaClose" aria-label="閉じる">&times;</button>
+  <small class="cta-heading">仕事のご相談について</small>
+  <p class="cta-text">
+    平日夜・土日を中心に、副業での開発・インフラ・自動化のご相談をお受けしています。
+    要件が固まっていない段階でもかまいません。まずはオンラインで15〜30分ほど、お話してみませんか。
+  </p>
+  <button type="button" class="cta-button" onclick="window.location.href='mailto:example@example.com'">
+    お問い合わせはこちら
+  </button>
+</aside>
 <script>
   const header = document.querySelector('.site-header');
   const toggleHeader = () => {
