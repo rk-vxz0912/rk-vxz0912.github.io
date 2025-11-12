@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Portfolio | DevOps / Webエンジニア</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="インフラとWebアプリ開発を両方カバーするDevOpsエンジニアのポートフォリオサイトです。" />
   <style>
     :root {
       --text-main: #ffffff;
@@ -24,9 +23,11 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-      color: var(--text-main);
       background-color: #f5f5f5;
+      color: #111827;
     }
+
+    /* ===== Hero ===== */
 
     .hero {
       position: relative;
@@ -48,8 +49,6 @@
       justify-content: space-between;
       padding: 24px 5vw 40px;
     }
-
-    /* header / nav */
 
     .site-header {
       position: absolute;
@@ -120,8 +119,6 @@
       font-weight: 500;
     }
 
-    /* hero bottom area */
-
     .hero-bottom {
       display: flex;
       justify-content: space-between;
@@ -165,8 +162,6 @@
     .hero-meta span + span {
       margin-left: 12px;
     }
-
-    /* right bottom card */
 
     .hero-card {
       max-width: 320px;
@@ -223,8 +218,6 @@
       box-shadow: 0 8px 16px rgba(148, 163, 184, 0.6);
     }
 
-    /* animation */
-
     @keyframes fade-up {
       from {
         opacity: 0;
@@ -236,7 +229,65 @@
       }
     }
 
-    /* responsive */
+    /* ===== 下のコンテンツ ===== */
+
+    .page-main {
+      background-color: #f9fafb;
+      color: #111827;
+    }
+
+    .section {
+      padding: 72px 5vw;
+    }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .section-lead {
+      font-size: 14px;
+      color: #4b5563;
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    .profile-grid h3 {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .profile-grid ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .profile-grid li + li {
+      margin-top: 6px;
+    }
 
     @media (max-width: 900px) {
       .site-header {
@@ -244,7 +295,7 @@
       }
 
       .site-nav {
-        display: none; /* スマホ版ではとりあえず非表示。必要なら後でハンバーガーに。 */
+        display: none;
       }
 
       .hero-bottom {
@@ -254,6 +305,10 @@
 
       .hero-card {
         max-width: 100%;
+      }
+
+      .profile-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -270,20 +325,24 @@
       .hero-title {
         font-size: 24px;
       }
+
+      .section {
+        padding-inline: 16px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Hero -->
   <div class="hero">
-    <!-- ヘッダー -->
     <header class="site-header">
-      <div class="site-logo">Portfolio</div>
+      <div class="site-logo">PORTFOLIO</div>
 
       <nav class="site-nav" aria-label="Primary">
-        <a href="#">プロフィール</a>
-        <a href="#">実績</a>
-        <a href="#">サービス</a>
-        <a href="#">お問い合わせ</a>
+        <a href="#profile">プロフィール</a>
+        <a href="#works">実績</a>
+        <a href="#services">サービス</a>
+        <a href="#contact">お問い合わせ</a>
       </nav>
 
       <div class="lang-switch" aria-label="Language switch">
@@ -292,9 +351,8 @@
       </div>
     </header>
 
-    <!-- メインコンテンツ -->
     <div class="hero-inner">
-      <main class="hero-bottom">
+      <div class="hero-bottom">
         <section class="hero-copy">
           <p class="hero-kicker">DevOps / Web Engineer</p>
           <h1 class="hero-title">
@@ -322,8 +380,22 @@
             お問い合わせはこちら
           </button>
         </aside>
-      </main>
+      </div>
     </div>
   </div>
-</body>
-</html>
+
+  <!-- 下にスクロールしたときのコンテンツ -->
+  <main class="page-main">
+    <section id="profile" class="section">
+      <div class="section-inner">
+        <p class="section-label">PROFILE</p>
+        <h2 class="section-title">自己紹介</h2>
+        <p class="section-lead">
+          本業では自社開発企業にて、インフラ構築からWebアプリ開発、CI/CD整備までを担当しています。
+          副業では、その経験を活かしてスモールスタートの開発支援や運用改善のお手伝いをしたいと考えています。
+        </p>
+
+        <div class="profile-grid">
+          <div>
+            <h3>現在の役割</h3>
+            <ul>
