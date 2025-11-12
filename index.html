@@ -17,8 +17,10 @@
     /* ===== 固定ヘッダー ===== */
     .site-header{
       position: fixed; top:0; left:0; right:0; height:64px;
-      padding: 0 5vw; z-index:1000;
-      display:block; /* ← header-innerにレイアウトを任せる */
+      padding: 0 var(--header-pad);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
       color: var(--text-sub);
       background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
       transition: background .25s, color .25s, border-color .25s;
@@ -29,11 +31,11 @@
       border-bottom: 1px solid rgba(148,163,184,.35);
     }
     .header-inner{
-      max-width: var(--max-w);
-      margin: 0 auto;
+      width: 100%;
+      margin: 0;
       display: grid;
-      grid-template-columns: 1fr auto 1fr; /* 左:ロゴ / 中:ナビ / 右:言語 */
-      align-items: center;
+      grid-template-columns: auto 1fr auto;   /* 左:ロゴ / 中:ナビ / 右:言語 */
+      align-items: center;                    /* ← 縦センター */
       gap: 24px;
     }
     .site-logo{ font-weight: 700; letter-spacing:.16em; justify-self: start; color: inherit; }
