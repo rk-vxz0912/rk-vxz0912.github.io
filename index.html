@@ -51,16 +51,35 @@
     }
 
     .site-header {
-      position: absolute;
-      inset-inline: 0;
-      top: 18px;
-      padding-inline: 5vw;
+      position: fixed;          /* ← これで常時表示 */
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      padding: 0 5vw;
       display: flex;
       align-items: center;
-      z-index: 2;
-      font-size: 14px;
-      color: var(--text-sub);
+      z-index: 20;
+
+      /* ヒーロー上では透けさせる */
+      --header-fg: rgba(255,255,255,.9);
+      color: var(--header-fg);
+      background: linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+      transition: background .25s ease, color .25s ease, border-color .25s ease;
     }
+
+    /* スクロールしたら白っぽいガラス背景に */
+    .site-header.is-scrolled {
+      --header-fg: #111827;
+      color: var(--header-fg);
+      background: rgba(255,255,255,.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148,163,184,.35);
+    }
+
+    /* ヘッダー内の文字色は継承させる */
+    .site-header .site-logo,
+    .site-header .site-nav a,
+    .site-header .lang-switch button { color: inherit; }
 
     .site-logo {
       font-size: 16px;
@@ -238,6 +257,7 @@
 
     .section {
       padding: 72px 5vw;
+      scroll-margin-top: 84px;
     }
 
     .section-inner {
@@ -316,6 +336,7 @@
       .hero-inner {
         padding-inline: 16px;
         padding-bottom: 28px;
+        padding-top: 96px;
       }
 
       .site-header {
@@ -453,5 +474,14 @@
       </div>
     </section>
   </main>
+<script>
+  const header = document.querySelector('.site-header');
+  const toggleHeader = () => {
+    if (window.scrollY > 24) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  toggleHeader(); // 初期表示時
+  window.addEventListener('scroll', toggleHeader);
+</script>
 </body>
 </html>
